@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST socketio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script>
+        const socketio = io.connect('http://127.0.0.1:5000/');
+        var numClients = 0
+
+        socketio.on('connect', function(){
+            socketio.send('anything');
+        });
+
+        socketio.on('message', function(msg){
+            const messageDisplay = document.getElementById('message-display');
+            if (messageDisplay) {
+                messageDisplay.innerText = `Time connected to server: ${msg}`;
+            }
+            socketio.send('anything');
+        });
+
+        socketio.on('update_count', function(count){
+            numPeople = count;
+            const countDisplay = document.getElementById('count-display');
+            if (countDisplay) {
+                countDisplay.innerText = `Number of people viewing: ${numPeople}`;
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Example on SocketIO :</h1>
+    <div id="message-display">Time connected to server: 0</div>
+    <div id="count-display">Number of people viewing: 0</div>
+    <div class="container">
+        <ul class="center">
+        <form name="button1" action="" method="POST" class="form-inline">
+            {{form.csrf}}
+            <label for="word_label" id="word_label" type="text">Enter Word</label>
+            <input name="word_input" id="word_input" type="text">
+            <button name="submit" class="btn-primary">Submit</button>
+        </form>
+        </ul>
+    </div>
+    
+</body>
+</html>

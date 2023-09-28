@@ -4,20 +4,22 @@
 <meta charset="UTF-8">
 <title>TEST socketio</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
-<script type="text/javascript" charset="utf-8">
-    var socket = io();
-    socket.on('connect', function() {
-        socket.emit('message', {data: 'I\'m connected!'});
-    });
+<script>
+    socketio = io()
+    socketio.connect('http://localhost:5000/')
+    socketio.on('connect', function(){
+        socketio.send('anything')
+    })
+    socketio.on('message', function(msg){
+        console.log(msg);
+        socketio.send('anything');
+    })
 </script>
 </script>
 </head>
 </head>
 <body>
 <h1>Example on SocketIO :</h1>
-<h2>Message Received: </h2>
-<form id="emit" method="POST">
-</form>
-<div id="log"></div>
+<h2>Time conneceted to server: </h2>
 </body>
 </html>
