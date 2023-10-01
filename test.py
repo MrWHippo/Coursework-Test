@@ -1,4 +1,5 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
-print(datetime.now())
-print(datetime.now() + 1)
+print("Current Time: ",datetime.now())
+print(datetime.now() + timedelta(seconds=1))
+

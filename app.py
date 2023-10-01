@@ -3,7 +3,7 @@ from flask_socketio import SocketIO, emit, join_room, leave_room, send
 from flask_wtf import FlaskForm
 from wtforms import StringField
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
@@ -25,8 +25,15 @@ class User:
     def increase_time(self):
         self.time += 1
     
+    #(datetime.now() + timedelta(seconds=1)
+     
     def time_has_been_changed(self):
-        if 
+        print(self.last_update())
+        print("Current T : ",datetime.now())
+        if self.last_update() + timedelta(seconds=1) <= datetime.now():
+            return False
+        else:
+            return True
 
 class Word_Entry(FlaskForm):
     word = StringField("word_input")
