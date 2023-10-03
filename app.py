@@ -28,9 +28,9 @@ class User:
     #(datetime.now() + timedelta(seconds=1)
      
     def time_has_been_changed(self):
-        print(self.last_update())
+        print(self.last_update)
         print("Current T : ",datetime.now())
-        if self.last_update() + timedelta(seconds=1) <= datetime.now():
+        if self.last_update + timedelta(seconds=1) <= datetime.now():
             return False
         else:
             return True
