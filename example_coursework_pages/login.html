@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        
+        body {
+            background-color: purple;
+            margin: 0;
+            padding: 0;
+        }
+
+        .banner {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .field-label {
+            color: white;
+            font-weight: bold;
+            font-size: 20px
+        }
+
+        .register-link {
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .form-container {
+            text-align: center;
+            margin-top: 220px;
+            padding-left: 30%;
+            padding-right: 30%;
+        }
+
+        .button {
+            display: block;
+            width: 250px;
+            padding: 10px 20px;
+            margin: 20px auto;
+            border: 2px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold
+        }
+        
+        .button.blue {
+            background-color: blue;
+            color: white;
+        }
+        
+        
+    </style>
+</head>
+<body>
+
+    <!-- Banner-->
+    <div class="banner">
+        <h4>Log In</h4>
+        <a class="register-link" href="/register">Register</a>
+    </div> 
+
+    <!-- Buttons-->
+    <div class="form-container center">
+        <form>
+            <label class="field-label" for="username_input">Username:</label>
+            <input name="username" id="username_input" type="text">
+            <label class="field-label" for="password_input">Password:</label>
+            <input name="password" id="password_input" type="password">
+            <button class="button blue"> Submit</button>
+        </form>
+    </div>
+</body>
+</html>

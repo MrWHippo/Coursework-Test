@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Leaderboard</title>
+    <style>
+        body {
+            background-color: purple;
+            margin: 0;
+            padding: 0;
+        }
+
+        .banner {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .field-label {
+            color: white;
+            font-weight: bold;
+            font-size: 20px
+        }
+
+        .logout-link {
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .home-link {
+            position: absolute;
+            top: 40px;
+            right: 100px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            color: black;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            background-color: black;
+            color: white;
+        }
+
+        .table-container {
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Banner -->
+    <div class="banner">
+        <h4>Leaderboard</h4>
+        <a class="home-link" href="/">Home</a>
+        <a class="logout-link" href="/logout">Log Out</a>
+    </div>
+    
+    <!-- Table -->
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Username</th>
+                <th>Largest Pot Won (£)</th>
+                <th>Win %</th>
+            </tr>
+            <tr>
+                <td>Player1</td>
+                <td>141,553</td>
+                <td>35</td>
+            </tr>
+            <tr>
+                <td>Player2</td>
+                <td>233,178</td>
+                <td>73</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
