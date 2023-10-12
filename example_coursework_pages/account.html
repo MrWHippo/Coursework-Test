@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>My Account</title>
+    <style>
+        body {
+            background-color: purple;
+            margin: 0;
+            padding: 0;
+        }
+
+        .banner {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .field-label {
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+
+        .logout-link {
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .home-link {
+            position: absolute;
+            top: 40px;
+            right: 100px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            color: black;
+            border: black;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            background-color: lightblue;
+            color: black;
+            cursor: pointer;
+        }
+
+        .table-container {
+            margin-top: 60px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .button-container {
+            margin: 60px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .delete-button {
+            margin: 30px;
+            padding: 5px;
+            background-color: red;
+            color: darkred;
+        }
+
+        .save-button {
+            padding: 5px;
+            background-color: lightgreen;
+            color: green
+        }
+        
+        .form-container-parent {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-container {
+            margin: 40px;
+            max-width: 1000px;
+            display: block;
+            align-items: center;
+        }
+
+        .form-label {
+            color: lightblue;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .warning {
+            color: red;
+            font-weight: bold;
+            font-size: 15px
+        }
+
+        .warning-container {
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Banner -->
+    <div class="banner">
+        <h4>My Account</h4>
+        <a class="home-link" href="/">Home</a>
+        <a class="logout-link" href="/logout">Log Out</a>
+    </div>
+    
+    <!-- Table -->
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Win%</th>
+                <td>Value</td>
+            </tr>
+            <tr>
+                <th>Number of Games</th>
+                <td class="green">Value</td>
+            </tr>
+            <tr>
+                <th>Largest Pot Win</th>
+                <td class="green">Value</td>
+            </tr>
+            <tr>
+                <th>Biggest Loss</th>
+                <td class="red">Value</td>
+            </tr>
+            <tr>
+                <th>PFR</th>
+                <td>Value</td>
+            </tr>
+            <tr>
+                <th>VPIP</th>
+                <td>Value</td>
+            </tr>
+            <tr>
+                <th>Agression Factor</th>
+                <td>Value</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Change Username -->
+    <div class="form-container-parent">
+        <div class="form-container">
+            <label class="form-label">Change Username:</label>
+            <input>
+            <ul class="center">
+                <button class="save-button">Confirm</button>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Change Password -->
+    <div class="form-container-parent">
+        <div class="form-container">
+            <label class="form-label">Change Password:</label>
+            <input>
+            <ul class="center">
+                <button class="save-button">Confirm</button>
+            </ul>
+        </div>
+    </div>
+    
+    
+    <!-- Reset and Delete Account Buttons -->
+    <div class="button-container">
+        <button class="delete-button"> Delete Account</button>
+        <button class="delete-button"> Reset Account Stats</button>
+    </div>
+    
+    <div class="warning-container">
+        <label class="warning">WARNING: This will delete all data linked to your account and no data can be restored.</label>
+    </div>
+
+</body>
+</html>

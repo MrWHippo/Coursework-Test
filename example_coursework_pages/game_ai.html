@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Game</title>
+    <style>
+        body {
+            background-color: purple;
+            margin: 0;
+            padding: 0;
+        }
+
+        .banner {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+        }
+
+        .logout-link {
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        .home-link {
+            position: absolute;
+            top: 40px;
+            right: 100px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        .banner-text {
+            font-size: 20px;
+        }
+
+        .game {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 62vh;
+            text-align: center;
+        }
+
+        .game-table {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 70%;
+            min-width: 600px;
+            max-width: 1200px;
+            height: 100%;
+            min-height: 340px;
+            max-height: 450px;
+            background: green;
+            border: 15px solid black;
+            border-radius: 100000px;
+        }
+
+        .card {
+            display: inline-block;
+            height: 30%;
+            width: 10%;
+            min-width: 50px;
+            max-width: 230px;
+            min-height: 100px;
+            max-height: 190px;
+            padding: 20px;
+            position: relative;
+            left: -55px;
+        }
+
+        .player-cards {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .player-card {
+            width: 15%;
+            height: 15%;
+            padding: 5px;
+        }
+
+        .player1 {
+            background: black;
+            position: absolute;
+            top: 5px;
+            right: 50%;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            position: relative;
+            top: -100px;
+            left: -50px;
+            margin: 40px;
+            padding: 10px;
+        }
+
+        .button-fold {
+            padding: 5px;
+            margin: 5px;
+            background-color: red;
+            color: white;
+            border: 3px solid black;
+            border-radius: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .button-check {
+            padding: 5px;
+            margin: 5px;
+            background-color: green;
+            color: white;
+            border: 3px solid black;
+            border-radius: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .button-raise {
+            padding: 5px;
+            margin: 5px;
+            background-color: lightblue;
+            color: white;
+            border: 3px solid black;
+            border-radius: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .circle-parent {
+            position: absolute;
+            width: 105%;
+            height: 120%;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+        }
+
+        .circle {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            border: 3px solid black;
+        }
+
+        .top-circle {
+            align-self: center;
+        }
+
+        .left-circles {
+            align-self: flex-start;
+            position: relative;
+            top: 50px;
+            
+        }
+
+        .right-circles {
+            align-self: flex-end;
+            position: relative;
+            top: -175px;
+        }
+
+        .player-parent {
+            position: absolute;
+            width: 105%;
+            height: 120%;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+        }
+
+        .player {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            border: 3px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dealer {
+            align-self: center;
+        }
+
+        .player4 {
+            align-self: flex-start;
+            position: relative;
+            top: -30px;
+            left: 25px;
+        }
+
+        .player3 {
+            align-self: flex-start;
+            position: relative;
+            top: 155px;
+            left: 25px;
+        }
+
+        .player1 {
+            align-self: flex-end;
+            position: relative;
+            top: -265px;
+            left: -25px;
+        }
+
+        .player2 {
+            align-self: flex-end;
+            position: relative;
+            top: -85px;
+            left: -25px;
+        }
+
+        .pot {
+            width: 100px;
+            height: 50px;
+            border-radius: 20%;
+            align-items: center;
+            justify-content: center;
+            background-color: darkgreen;
+            color: white;
+            display: flex;
+            position: relative;
+            top: -120px;
+            left: 300px
+        }
+
+        .player-chips {
+            width: 100px;
+            height: 50px;
+            border-radius: 20%;
+            align-items: center;
+            justify-content: center;
+            background-color: blueviolet;
+            color: white;
+            display: flex;
+            position: relative;
+            top: -50px;
+            left: 535px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Banner -->
+    <div class="banner">
+        <h1>Poker</h1>
+        <a class="home-link" href="/">Home</a>
+        <a class="logout-link" href="/logout">Log Out</a>
+    </div>
+    
+    <!-- Table -->
+    <div class="game">
+        <div class="game-table">
+            <div class="pot"> THE POT</div>
+            <img class="card" src="cards/CLUB-1.svg">
+            <img class="card" src="cards/CLUB-2.svg">
+            <img class="card" src="cards/CLUB-3.svg">
+            <img class="card" src="cards/CLUB-4.svg">
+            <img class="card" src="cards/CLUB-5.svg">
+            <!-- Add circles here -->
+            <div class="player-parent">
+                <div class="dealer player"> Dealer</div>
+                <div class="player4 player">AI 4</div>
+                <div class="player3 player">AI 3</div>
+                <div class="player1 player">AI 1</div>
+                <div class="player2 player"> AI 2</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="player-chips">Chips</div>
+
+    <!-- Player Cards -->
+    <div class="player-cards">
+        <img class="player-card" src="cards/CLUB-6.svg">
+        <img class="player-card" src="cards/CLUB-7.svg">
+    </div>
+
+    <!-- Player Choice Buttons -->
+    <div class="button-container">
+        <button class="button-fold"> Fold </button>
+        <button class="button-check"> Check </button>
+        <button class="button-raise"> Raise </button>
+    </div>
+
+</body>
+</html>

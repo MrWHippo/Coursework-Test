@@ -60,6 +60,8 @@
         th {
             background-color: black;
             color: white;
+            cursor: pointer;
+            border: black;
         }
 
         .table-container {
@@ -83,8 +85,8 @@
         <table>
             <tr>
                 <th>Username</th>
-                <th>Largest Pot Won (£)</th>
-                <th>Win %</th>
+                <th onclick="sortTable(1)">Largest Pot Won (£)</th>
+                <th onclick="sortTable(2)">Win %</th>
             </tr>
             <tr>
                 <td>Player1</td>
@@ -98,5 +100,30 @@
             </tr>
         </table>
     </div>
+
+    <script>
+        function sortTable(columnIndex) {
+            var table, rows, swithcing, i, x, y, shouldSwitch;
+            table = document.querySelector("table");
+            swithcing= true;
+            while (swithcing) {
+                swithcing = false;
+                rows = table.rows;
+                for (i = 1; i< (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("td")[columnIndex];
+                    y = rows[i + 1].getElementsByTagName("td")[columnIndex];
+                    if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i])
+                }
+                }
+            }
+        }
+    </script>
 </body>
 </html>
