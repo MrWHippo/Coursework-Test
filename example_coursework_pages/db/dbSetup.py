@@ -15,14 +15,19 @@ conn.execute('''CREATE TABLE STATS
              BIGGEST_LOSS       INTEGER,
              VPIP               INTEGER,
              PFR                INTEGER,
-             CHOICE_TALLY       INTEGER,
-             RAISE_TALLY        INTEGER,
+             PF_RAISE_TALLY     INTEGER,
              NUMBER_OF_BETS     INTEGER,
              NUMBER_OF_RAISES   INTEGER,
              TOTAL_CHOICE_COUNT INTEGER,
              AGGRESSION_STAT    INTEGER,
+             NUMBER_OF_WINS     INTEGER,
+             NUMBER_OF_HANDS    INTEGER,
+             VPIP_COUNT         INTEGER,
              FOREIGN KEY(ID) REFERENCES ACCOUNTS(ID));''')
 
 print("Table created successfully")
 
 conn.close()
+
+
+
