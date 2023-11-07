@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, session
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField
 
@@ -35,9 +35,15 @@ def login():
     if form.is_submitted():
         username = form.username.data
         password = form.password.data
-        return render_template('home.html')
+        if username == None or password == None:
+            return render_template('login.html', form=form)
+        else:
+            # check username is not already taken
+            session["username"] = username
+            return render_template('home.html')
     else:
-        return render_template('login.html',form=form)
+        return render_template('login.html', form=form)
+
 
 @app.route('/register', methods=["GET", "POST"])
 def register():
@@ -45,33 +51,73 @@ def register():
     if form.is_submitted():
         username = form.username.data
         password = form.password.data
-        return render_template('home.html')
+        if username == None or password == None:
+            return render_template('register.html', form=form)
+        else:
+            # check username is not already taken
+            session["username"] = username
+            return render_template('home.html')
     else:
         return render_template('register.html',form=form)
 
+
 @app.route('/', methods=["GET", "POST"])
 def home():
-    return render_template('home.html')
+    username = session.get("username", None)
+    if username is not None:
+        return render_template('home.html')
+    else:
+        return render_template('login.html', form=LoginForm)
+    
 
 @app.route('/leaderboard')
 def leaderboard():
-    return render_template('leaderboard.html')
+    username = session.get("username", None)
+    if username is not None:
+        return render_template('leaderboard.html')
+    else:
+        return render_template('login.html', form=LoginForm)
+
 
 @app.route('/logout')
 def logout():
+    try:
+        del session["username"]
+    except:
+        pass
     return render_template('logout.html')
+
 
 @app.route('/account')
 def account():
-    password_form = ChangePassword()
-    username_form = ChangeUsername()
-    
-    return render_template('account.html')
+    username = session.get("username", None)
+    if username is not None:
+        password_form = ChangePassword()
+        username_form = ChangeUsername()
+        if password_form.is_submitted():
+            return render_template('account.html')
+        
+        elif username_form.is_submitted():
+            return render_template('account.html')
+        
+        else:
+            return render_template('account.html')
+    else:
+        return render_template('login.html', form=LoginForm)
+
 
 @app.route('/aiGame')
 def aiGame():
-    return render_template('game_ai.html')
+    username = session.get("username", None)
+    if username is not None:
+        return render_template('game_ai.html')
+    else:
+        return render_template('login.html', form=LoginForm)
 
 @app.route('/hotseatGame')
 def hotseatGame():
-    return render_template('game_hs.html')
+    username = session.get("username", None)
+    if username is not None:
+        return render_template('game_hs.html')
+    else:
+        return render_template('login.html', form=LoginForm)

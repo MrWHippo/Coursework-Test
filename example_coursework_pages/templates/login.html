@@ -73,12 +73,13 @@
 
     <!-- Buttons-->
     <div class="form-container center">
-        <form>
+        <form form name="log_in" action="" method="POST">
+            {{form.csrf}}
             <label class="field-label" for="username_input">Username:</label>
             <input name="username" id="username_input" type="text">
             <label class="field-label" for="password_input">Password:</label>
             <input name="password" id="password_input" type="password">
-            <button class="button blue">Submit</button>
+            <button name="submit" class="button blue">Log In</button>
         </form>
     </div>
 </body>

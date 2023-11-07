@@ -167,24 +167,26 @@
 
     <!-- Change Username -->
     <div class="form-container-parent">
-        <div class="form-container">
+        <form name="change_username" action="" method="POST" class="form-container">
+            {{form.csrf}}
             <label class="form-label">Change Username:</label>
             <input>
             <ul class="center">
                 <button class="save-button">Confirm</button>
             </ul>
-        </div>
+        </form>
     </div>
 
     <!-- Change Password -->
     <div class="form-container-parent">
-        <div class="form-container">
+        <form name="change_password" action="" method="POST" class="form-container">
+            {{form.csrf}}
             <label class="form-label">Change Password:</label>
             <input>
             <ul class="center">
                 <button class="save-button">Confirm</button>
             </ul>
-        </div>
+        </form>
     </div>
     
     
