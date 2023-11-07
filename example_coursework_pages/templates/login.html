@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poker Home</title>
+    <title>Poker Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <style>
         
@@ -21,7 +21,13 @@
             position: relative;
         }
         
-        .logout-link {
+        .field-label {
+            color: white;
+            font-weight: bold;
+            font-size: 20px
+        }
+
+        .register-link {
             position: absolute;
             top: 40px;
             right: 20px;
@@ -30,9 +36,11 @@
             font-weight: bold;
         }
         
-        .button-container {
+        .form-container {
             text-align: center;
             margin-top: 220px;
+            padding-left: 30%;
+            padding-right: 30%;
         }
 
         .button {
@@ -59,15 +67,19 @@
 
     <!-- Banner-->
     <div class="banner">
-        <h4>Home</h4>
-        <a class="logout-link" href="/logout">Log Out</a>
+        <h4>Log In</h4>
+        <a class="register-link" href="/register">Register</a>
     </div> 
 
     <!-- Buttons-->
-    <div class="button-container center">
-        <button class="button blue">Play</button>
-        <button class="button blue">Leaderboard</button>
-        <button class="button blue">My Account Statistics</button>
+    <div class="form-container center">
+        <form>
+            <label class="field-label" for="username_input">Username:</label>
+            <input name="username" id="username_input" type="text">
+            <label class="field-label" for="password_input">Password:</label>
+            <input name="password" id="password_input" type="password">
+            <button class="button blue">Submit</button>
+        </form>
     </div>
 </body>
 </html>
