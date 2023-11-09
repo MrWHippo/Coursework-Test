@@ -5,24 +5,29 @@ from wtforms import StringField, SubmitField, PasswordField
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 
+
 class Account:
     def __init__(self, username, password):
         self.username = username
         self.password = password
+
 
 class LoginForm(FlaskForm):
     username = StringField("username")
     password = PasswordField("password")
     submit = SubmitField("submit")
 
+
 class RegisterForm(FlaskForm):
     username = StringField("username")
     password = PasswordField("password")
     submit = SubmitField("submit")
 
+
 class ChangePassword(FlaskForm):
     password = PasswordField("password")
     submit = SubmitField("Submit")
+
 
 class ChangeUsername(FlaskForm):
     username = StringField("username")
@@ -33,6 +38,7 @@ class ChangeUsername(FlaskForm):
 def login():
     form = LoginForm()
     if form.is_submitted():
+        print("form submitted")
         username = form.username.data
         password = form.password.data
         if username == None or password == None:
@@ -95,13 +101,13 @@ def account():
         password_form = ChangePassword()
         username_form = ChangeUsername()
         if password_form.is_submitted():
-            return render_template('account.html')
+            return render_template('account.html', form1=ChangePassword, form2=ChangeUsername)
         
         elif username_form.is_submitted():
-            return render_template('account.html')
+            return render_template('account.html', form1=ChangePassword, form2=ChangeUsername)
         
         else:
-            return render_template('account.html')
+            return render_template('account.html', form1=ChangePassword, form2=ChangeUsername)
     else:
         return render_template('login.html', form=LoginForm)
 
@@ -113,6 +119,7 @@ def aiGame():
         return render_template('game_ai.html')
     else:
         return render_template('login.html', form=LoginForm)
+
 
 @app.route('/hotseatGame')
 def hotseatGame():
