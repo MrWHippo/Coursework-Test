@@ -144,35 +144,25 @@ def check_royal_flush(whole_hand, suit):
     return is_royal_flush, winning_hand
 
 
-def check_straight(hand, count=1, prev=None):
-    if hand == []:
-        return False
-    
-    if count == 5:
-        return True
-
-    print(hand[0].get_value())
-    if prev is None or hand[0].get_value() == prev + 1:
-        return check_straight(hand[1:], count + 1, hand[0])
-    else:
-        return check_straight(hand[1:], 1, hand[0])
-
-# need to remake
 def check_straight(hand):
+    prev = hand[0].get_value()
     count = 1
     winning_hand = []
-    for i in range(len(hand)):
-        if hand[i] != hand[0]:
-            if hand[i].get_value() == hand[i-1].get_value() + 1:
-                count += 1
-                winning_hand.append(hand[i])
-            elif count < 5:
-                count = 1
-                winning_hand = []
+    for card in hand[1:]:
+        if card.get_value() == prev + 1:
+            winning_hand.append(card)
+            count += 1
+        elif count < 5:
+            count = 1
+            winning_hand = [card]
+
     if count >= 5:
+        winning_hand = [winning_hand[-5],winning_hand[-4],winning_hand[-3],winning_hand[-2],winning_hand[-1]]
         return 1, winning_hand
     else:
         return 0, None
+
+
 
 def check_matches(hand):
     poss_winning_cards = []
@@ -283,6 +273,8 @@ def check_matches(hand):
 
 def find_best_hand(my_hand, table_cards):
     whole_hand = get_whole_hand(my_hand, table_cards)
+    for card in whole_hand:
+        print(card.get_value())
     # flush and royal flush
     num, winning_hand = check_flush(whole_hand)
     if num == 2:
@@ -293,34 +285,36 @@ def find_best_hand(my_hand, table_cards):
         print("Flush")
         for card in winning_hand:
             print(card.get_value())
-    # straight
-    num, winning_hand = check_straight(whole_hand)
-    if num == 1:
-        print("Straight")
-        for card in winning_hand:
-            print(card.get_value())
-    #matches
-    num, winning_hand = check_matches(whole_hand)
-    if num == 5:
-        print("Four of a Kind")
-        for card in winning_hand:
-            print(card.get_value())
-    elif num == 4:
-        print("Full House")
-        for card in winning_hand:
-            print(card.get_value())
-    elif num == 3:
-        print("Three of a Kind")
-        for card in winning_hand:
-            print(card.get_value())
-    elif num == 2:
-        print("Two Pair")
-        for card in winning_hand:
-            print(card.get_value())
-    elif num == 1:
-        print("Pair")
-        for card in winning_hand:
-            print(card.get_value())
     else:
-        print("High Card")
+        # straight
+        num, winning_hand = check_straight(whole_hand)
+        if num == 1:
+            print("Straight")
+            for card in winning_hand:
+                print(card.get_value())
+        else:
+        #matches
+            num, winning_hand = check_matches(whole_hand)
+            if num == 5:
+                print("Four of a Kind")
+                for card in winning_hand:
+                    print(card.get_value())
+            elif num == 4:
+                print("Full House")
+                for card in winning_hand:
+                    print(card.get_value())
+            elif num == 3:
+                print("Three of a Kind")
+                for card in winning_hand:
+                    print(card.get_value())
+            elif num == 2:
+                print("Two Pair")
+                for card in winning_hand:
+                    print(card.get_value())
+            elif num == 1:
+                print("Pair")
+                for card in winning_hand:
+                    print(card.get_value())
+            else:
+                print("High Card")
 
