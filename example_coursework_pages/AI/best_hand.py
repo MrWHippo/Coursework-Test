@@ -4,12 +4,16 @@ class PlayingCard():
     def __init__(self, value, suit):
         self.value = value
         self.suit = suit
+        self.whole_card = f"{value}{suit}"
     
     def get_suit(self):
         return self.suit
     
     def get_value(self):
         return self.value
+    
+    def get_whole_card(self):
+        return self.whole_card
 
 def merge(A,B):
     pA = 0
@@ -41,6 +45,7 @@ def get_whole_hand(my_hand, table_cards):
     whole_hand = []
 
     for i in range(2):
+        print(my_hand[i-1])
         whole_hand.append(my_hand[i-1])
 
     for i in range(5):
@@ -119,6 +124,9 @@ def check_royal_flush(hand):
 
 
 def check_straight(hand):
+    if hand[0].get_value() == 1 and hand[1].get_value() == 10 and hand[2].get_value() == 11  and hand[3].get_value() == 12 and hand[4].get_value() == 13:
+        return True
+    
     prev = hand[0].get_value()
     count = 1
     for card in hand[1:]:
