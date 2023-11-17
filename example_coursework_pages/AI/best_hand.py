@@ -45,7 +45,6 @@ def get_whole_hand(my_hand, table_cards):
     whole_hand = []
 
     for i in range(2):
-        print(my_hand[i-1])
         whole_hand.append(my_hand[i-1])
 
     for i in range(5):
@@ -81,32 +80,12 @@ def check_flush(hand):
         else:
             count_spades += 1
 
-    if  count_diamonds == 5:
+    if  count_diamonds == 5 or count_hearts == 5 or count_clubs == 5 or count_spades == 5:
         flush = True
-        fact = check_royal_flush(hand, "D")
-        if fact == True:
-            is_royal_flush = True
-            
-    if  count_hearts == 5:
-        flush = True
-        fact = check_royal_flush(hand, "H")
+        fact = check_royal_flush(hand)
         if fact == True:
             is_royal_flush = True
 
-    if  count_clubs == 5:
-        flush = True
-        fact = check_royal_flush(hand, "C")
-        if fact == True:
-            is_royal_flush = True
-
-    if  count_spades == 5:
-        flush = True
-        fact = check_royal_flush(hand, "S") 
-        if fact == True:
-            is_royal_flush = True
-
-    else:
-        flush = False
     if is_royal_flush == True:
         return 2, hand
     elif flush == True:
@@ -152,7 +131,7 @@ def check_matches(hand):
     two_pair = False
     pair  = False
 
-    for value in range(1,13):
+    for value in range(1,14):
         if matches[value] == 4:
             return 5
         elif matches[value] == 3:
@@ -174,71 +153,6 @@ def check_matches(hand):
     else:
         return 0
 
-
-def find_best_hand(my_hand, table_cards):
-    whole_hand = get_whole_hand(my_hand, table_cards)
-    for card in whole_hand:
-        print(card.get_value())
-    # flush and royal flush
-    num, winning_hand = check_flush(whole_hand)
-    if num == 2:
-        print("Royal Flush")
-        for card in winning_hand:
-            print(card.get_value())
-
-    elif num == 1:
-        num, winning_hand2 = check_straight(whole_hand)
-        straight_flush = False
-        if num == 1:
-            straight_flush = True
-            for i in range(len(winning_hand)):
-                if winning_hand[i] != winning_hand2:
-                    straight_flush = False
-            if straight_flush == True:
-                print("Straight Flush")
-                for card in winning_hand:
-                    print(card.get_value())
-            else:
-                print("Flush")
-                for card in winning_hand:
-                    print(card.get_value())
-        else:
-            print("Flush")
-            for card in winning_hand:
-                print(card.get_value())
-
-    else:
-        # straight
-        num, winning_hand = check_straight(whole_hand)
-        if num == 1:
-            print("Straight")
-            for card in winning_hand:
-                print(card.get_value())
-        else:
-        #matches
-            num, winning_hand = check_matches(whole_hand)
-            if num == 5:
-                print("Four of a Kind")
-                for card in winning_hand:
-                    print(card.get_value())
-            elif num == 4:
-                print("Full House")
-                for card in winning_hand:
-                    print(card.get_value())
-            elif num == 3:
-                print("Three of a Kind")
-                for card in winning_hand:
-                    print(card.get_value())
-            elif num == 2:
-                print("Two Pair")
-                for card in winning_hand:
-                    print(card.get_value())
-            elif num == 1:
-                print("Pair")
-                for card in winning_hand:
-                    print(card.get_value())
-            else:
-                print("High Card")
 
 def find_best_hand(user_hand, table_cards):
     contains_straight_flush = False
@@ -280,7 +194,7 @@ def find_best_hand(user_hand, table_cards):
             four_kind = hand
         elif num == 4:
             contains_full_house = True
-            full_house = True
+            full_house = hand
         elif num == 3:
             contains_three_kind = True
             three_kind = hand
@@ -321,7 +235,12 @@ def find_best_hand(user_hand, table_cards):
         print("High Card")
         return high_card
     
-
+def print_hand(hand):
+    vis_hand = []
+    for card in hand:
+        vis_hand.append(card.get_whole_card())
+    return vis_hand
+        
 
 
 

@@ -1,5 +1,5 @@
 from best_hand import PlayingCard, find_best_hand
-from test_hands import games
+from test_hands import further_test_cases
 
 my_hand = [PlayingCard(3,"H"),PlayingCard(7,"H")]
 table_cards = [PlayingCard(3,"C"), PlayingCard(4,"C"), PlayingCard(7,"D"), PlayingCard(8,"H"), PlayingCard(13,"S")]
@@ -9,13 +9,8 @@ table_cards = [PlayingCard(3,"C"), PlayingCard(4,"C"), PlayingCard(7,"D"), Playi
 def test_hand(whole_hand):
     my_hand = whole_hand[0]
     table_cards = whole_hand[1]
-    print_hand(my_hand)
-    print_hand(table_cards)
     best_hand = find_best_hand(my_hand, table_cards)
-    best_hand_view = []
-    for card in best_hand:
-        best_hand_view.append(card.get_value())
-    return best_hand_view
+    return best_hand
 
 def compare_ans(correct_ans, calc_ans):
     i = 0
@@ -28,12 +23,12 @@ def compare_ans(correct_ans, calc_ans):
 
 def run_through_hands(games):
     for hand in games:
-        #print(hand)
         calc_ans = test_hand(hand[0])
         result = compare_ans(hand[1],calc_ans)
         if not result:
-            print(result, print_hand(hand[0], print_hand(hand[1])))
+            print(result,"\nusers hand: ", print_hand(hand[0][0]),"\ntable cards: ", print_hand(hand[0][1]),"\nbest hand: ", print_hand(hand[1]),"\ncalculated best hand: ", print_hand(calc_ans))
         else:
+            print(result,"\nusers hand: ", print_hand(hand[0][0]),"\ntable cards: ", print_hand(hand[0][1]),"\nbest hand: ", print_hand(hand[1]),"\ncalculated best hand: ", print_hand(calc_ans))
             print(result)
     print("Done")
 
@@ -41,7 +36,7 @@ def print_hand(hand):
     vis_hand = []
     for card in hand:
         vis_hand.append(card.get_whole_card())
-    print(vis_hand)
+    return vis_hand
         
 
-run_through_hands(games)
+run_through_hands(further_test_cases)
