@@ -83,6 +83,27 @@ def check_flush(hand):
     if  count_diamonds == 5 or count_hearts == 5 or count_clubs == 5 or count_spades == 5:
         flush = True
         fact = check_royal_flush(hand)
+<<<<<<< Updated upstream
+=======
+        if fact == True:
+            is_royal_flush = True
+            
+    if  count_hearts == 5:
+        flush = True
+        fact = check_royal_flush(hand)
+        if fact == True:
+            is_royal_flush = True
+
+    if  count_clubs == 5:
+        flush = True
+        fact = check_royal_flush(hand)
+        if fact == True:
+            is_royal_flush = True
+
+    if  count_spades == 5:
+        flush = True
+        fact = check_royal_flush(hand) 
+>>>>>>> Stashed changes
         if fact == True:
             is_royal_flush = True
 
@@ -153,7 +174,10 @@ def check_matches(hand):
     else:
         return 0
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 def find_best_hand(user_hand, table_cards):
     contains_straight_flush = False
     contains_four_kind = False

@@ -23,6 +23,7 @@ def compare_ans(correct_ans, calc_ans):
 
 def run_through_hands(games):
     for hand in games:
+<<<<<<< Updated upstream
         calc_ans = test_hand(hand[0])
         result = compare_ans(hand[1],calc_ans)
         if not result:
@@ -30,6 +31,12 @@ def run_through_hands(games):
         else:
             print(result,"\nusers hand: ", print_hand(hand[0][0]),"\ntable cards: ", print_hand(hand[0][1]),"\nbest hand: ", print_hand(hand[1]),"\ncalculated best hand: ", print_hand(calc_ans))
             print(result)
+=======
+        print("Next hand:")
+        calc_ans = test_hand(hand[0])
+        result = compare_ans(hand[1],calc_ans)
+        print(result +"Calculated answer: " print_hand(calc_ans),"Correct answer: " + print_hand(hand[1]))
+>>>>>>> Stashed changes
     print("Done")
 
 def print_hand(hand):
