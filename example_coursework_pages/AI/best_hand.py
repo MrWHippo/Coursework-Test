@@ -11,7 +11,7 @@ class PlayingCard():
     
     def get_value(self):
         return self.value
-    
+
     def get_whole_card(self):
         return self.whole_card
 
@@ -152,16 +152,30 @@ def check_matches(hand):
         return 1
     else:
         return 0
+    
+def contains_ace(hand):
+    if hand[0].get_value() == 1:
+        return True
+    else:
+        return False
 
 def find_best_hand(user_hand, table_cards):
     contains_straight_flush = False
+    ace_and_SF_bool = False
     contains_four_kind = False
+    ace_and_4K_bool = False
     contains_full_house = False
+    ace_and_FH_bool = False
     contains_flush = False
+    ace_and_F_bool = False
     contains_straight = False
+    ace_and_Straight_bool = False
     contains_three_kind = False
+    ace_and_3K_bool = False
     contains_two_pair = False
+    ace_and_twopair_bool = False
     contains_pair = False
+    ace_high_card = None
 
     whole_hand = get_whole_hand(user_hand, table_cards)
     hands = generate_all_combinations(whole_hand, user_hand)
@@ -201,9 +215,14 @@ def find_best_hand(user_hand, table_cards):
             contains_two_pair = True
             two_pair = hand
         elif num == 1:
+            if contains_ace(hand):
+                ace_and_pair_bool = True
+                ace_and_pair = hand
             contains_pair = True
             pair = hand
         else:
+            if contains_ace(hand):
+                ace_high_card = hand
             high_card = hand
 
     if contains_straight_flush:
@@ -232,7 +251,10 @@ def find_best_hand(user_hand, table_cards):
         return pair
     else:
         print("High Card")
-        return high_card
+        if ace_high_card != None:
+            return ace_high_card
+        else:
+            return high_card
     
 def print_hand(hand):
     vis_hand = []

@@ -27,9 +27,10 @@ def run_through_hands(games):
         calc_ans = test_hand(hand[0])
         result = compare_ans(hand[1],calc_ans)
         if result:
-            print(result)
+            print(f'\033[0;32;40m{result} \033[0;0m')
         else:
-            print(result ,"Calculated answer: ",print_hand(calc_ans),"Correct answer: " , print_hand(hand[1]))
+            print(f'\033[0;31;40m{result} \033[0;0m')
+            print("Calculated answer: ",print_hand(calc_ans),"Correct answer: " , print_hand(hand[1]))
     print("Done")
 
 def print_hand(hand):
