@@ -1,10 +1,5 @@
-from best_hand import PlayingCard, find_best_hand
-from test_hands import games # further_test_cases
-
-my_hand = [PlayingCard(3,"H"),PlayingCard(7,"H")]
-table_cards = [PlayingCard(3,"C"), PlayingCard(4,"C"), PlayingCard(7,"D"), PlayingCard(8,"H"), PlayingCard(13,"S")]
-# expected best hand = 2,3,4,5,6 - Striaght
-
+from best_hand import find_best_hand
+from test_hands import games
 
 def test_hand(whole_hand):
     my_hand = whole_hand[0]
@@ -40,4 +35,4 @@ def print_hand(hand):
     return vis_hand
         
 
-run_through_hands(games) #  or further_test_cases
+run_through_hands(games)

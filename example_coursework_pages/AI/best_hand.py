@@ -169,7 +169,6 @@ def find_best_hand(user_hand, table_cards):
     contains_flush = False
     ace_and_F_bool = False
     contains_straight = False
-    ace_and_Straight_bool = False
     contains_three_kind = False
     ace_and_3K_bool = False
     contains_two_pair = False
@@ -191,6 +190,9 @@ def find_best_hand(user_hand, table_cards):
                 contains_straight_flush = True
                 straight_flush = hand
             else:
+                if contains_ace(hand):
+                    ace_and_F_bool = True
+                    ace_and_F = hand
                 contains_flush = True
                 flush = hand
         else:
@@ -203,15 +205,27 @@ def find_best_hand(user_hand, table_cards):
         #matches
         num = check_matches(hand)
         if num == 5:
+            if contains_ace(hand):
+                ace_and_4K_bool = True
+                ace_and_4K = hand
             contains_four_kind = True
             four_kind = hand
         elif num == 4:
+            if contains_ace(hand):
+                ace_and_FH_bool = True
+                ace_and_FH = hand
             contains_full_house = True
             full_house = hand
         elif num == 3:
+            if contains_ace(hand):
+                ace_and_3K_bool = True
+                ace_and_3K = hand
             contains_three_kind = True
             three_kind = hand
         elif num == 2:
+            if contains_ace(hand):
+                ace_and_twopair_bool = True
+                ace_and_twopair = hand
             contains_two_pair = True
             two_pair = hand
         elif num == 1:
@@ -230,24 +244,36 @@ def find_best_hand(user_hand, table_cards):
         return straight_flush
     elif contains_four_kind:
         print("Four of a Kind")
+        if ace_and_4K_bool:
+            return ace_and_4K
         return four_kind
     elif contains_full_house:
         print("Full House")
+        if ace_and_FH_bool:
+            return ace_and_FH
         return full_house
     elif contains_flush:
         print("Flush")
+        if ace_and_F_bool:
+            return ace_and_F
         return flush
     elif contains_straight:
         print("Straight")
         return straight
     elif contains_three_kind:
         print("Three of a Kind")
+        if ace_and_3K_bool:
+            return ace_and_3K
         return three_kind
     elif contains_two_pair:
         print("Two Pair")
+        if ace_and_twopair_bool:
+            return ace_and_twopair
         return two_pair
     elif contains_pair:
         print("Pair")
+        if ace_and_pair_bool:
+            return ace_and_pair
         return pair
     else:
         print("High Card")
@@ -255,13 +281,3 @@ def find_best_hand(user_hand, table_cards):
             return ace_high_card
         else:
             return high_card
-    
-def print_hand(hand):
-    vis_hand = []
-    for card in hand:
-        vis_hand.append(card.get_whole_card())
-    return vis_hand
-        
-
-
-
